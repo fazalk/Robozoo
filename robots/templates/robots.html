@@ -1,0 +1,80 @@
+{% load static %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Robozoo | Robots{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/foundation.css" %}">
+</head>
+<body>
+{% block body %}
+
+ <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+         <li><a href="/" class="button alert">Home</a></li>
+         <li><a href="/robots/" class="button alert">Robots</a></li>
+         <li><a href="/people/" class="button alert">People</a></li>
+         <li><a href="/blog/" class="button alert">Blog</a></li>
+        </ul>
+      </div>
+      <br>
+      <h1><img src="{% static "assets/images/robozoo-logo.png" %}" /></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+ 
+ 
+  <!-- Main Page Content -->
+ 
+  <div class="row">
+
+   <!-- Thumbnails -->
+        {% for robot in robots %}
+
+        <div class="large-6 small-6 columns">
+          <img src="/static/assets/{{ robot.Thumb|thumbnail_url:'robot' }}" alt="" />
+          <div class="panel">
+            <a href="/robots/get/{{ robot.id }}/">{{ robot.Name }}</a>
+          </div>
+        </div>
+
+        {% endfor %}
+ 
+    <!-- End Thumbnails -->
+ 
+  </div>
+ 
+  <!-- End Main Content -->
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Copyright © 2014 Robozoo.</p>
+        </div>
+
+        <div class="large-6 columns">
+            <ul class="inline-list right">
+                 <li><a href="/login">Staff Area</a></li>
+            </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+     
+{% endblock %}
+</body>
+</html>

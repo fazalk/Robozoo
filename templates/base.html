@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Robozoo{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/foundation.css" %}">
+</head>
+
+{% block body %}
+<body>
+
+	<div class="row">
+
+    <div class="large-12 columns">
+ 
+      <!-- Header -->
+ 
+        <ul class="right button-group">
+          <li><a href="/" class="button alert">Home</a></li>
+          <li><a href="/robots/" class="button alert">Robots</a></li>
+          <li><a href="/people/" class="button alert">People</a></li>
+          <li><a href="/blog/" class="button alert">Blog</a></li>
+        </ul>
+ 
+      <br>
+      <h1><img src="{% static "assets/images/robozoo-logo.png" %}" /></h1>
+      <hr />  
+      </div>
+      </div>
+
+       <!-- End Header -->
+
+<div class="row">    
+    
+    <!-- Main Content Section -->
+    <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+    <div class="large-9 push-3 columns">
+      
+      {% block header %}
+      <h3>Page Title <small>Page subtitle</small></h3>
+      {% endblock %}
+      
+      {% block content %}
+	    {% endblock %}
+            
+    </div>
+
+   <!-- Nav Sidebar -->
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+    <div class="large-3 pull-9 columns">
+      {% block sidebar %}  
+      <ul class="side-nav">
+       {% if user.is_authenticated %}
+       <li><a href="/blog/articles">Articles</a></li>
+	     <li><a href="/robots/all">Robots</a></li>
+       <li><a href="/people/all">People</a></li>
+	     <li><a href="/logout">Logout</a></li>
+       {% else %}
+       <li><h6> Once you are logged in, sections available for editing will appear here.</h6></li>
+       <li><h6><a href="/register">Register</a></h6></li>
+       {% endif %}
+       
+      </ul>
+    	{% endblock %}
+    </div>
+
+  </div>
+
+ <!-- Footer -->
+  
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Copyright © 2014 Robozoo.</p>
+        </div>
+
+        <div class="large-6 columns">
+                  <ul class="inline-list right">
+                    <li><a href="/login">Staff Area</a></li>
+                  </ul>
+        </div>
+
+      </div>
+    </div> 
+  </footer>
+	
+</body>
+{% endblock %}
+
+</html>

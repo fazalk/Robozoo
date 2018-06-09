@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Robozoo | Articles{% endblock %}</title>
+
+{% block header %}
+<h3>Articles <small>Published online</small></h3>
+{% endblock %}
+
+{% block sidebar %}  
+      <ul class="side-nav">
+       <li><a href="/blog/articles">Articles</a></li>
+       <li><a href="/blog/create">Create Article</a></li>
+       <li><a href="/user">User Area</a></li>
+       <li><a href="/logout">Logout</a></li>   
+      </ul>
+{% endblock %}
+
+{% block content %}
+
+{% if articles.count > 0 %}
+
+{% for article in articles %}
+
+<h3><a href="/blog/get/{{ article.id }}/">{{ article.Title }}</a></h3>
+<p>{{ article.Text|truncatewords:"10"|safe }}</p>
+
+{% endfor %}
+
+{% else %}
+
+<p>There are no articles published online on this website.
+</br> Click <a href="/blog/create/">here</a> to create a article and publish it.</p>
+
+{% endif %}
+
+{% endblock %}

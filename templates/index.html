@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block body %}
+<body>
+
+ <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+         <li><a href="/" class="button alert">Home</a></li>
+         <li><a href="/robots/" class="button alert">Robots</a></li>
+         <li><a href="/people/" class="button alert">People</a></li>
+         <li><a href="/blog/" class="button alert">Blog</a></li>
+        </ul>
+      </div>
+      <br>
+      <h1><img src="{% static "assets/images/robozoo-logo.png" %}" /></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+ 
+      <!-- Header Content -->
+ 
+        <div class="row">
+ 
+          <div class="large-6 columns hide-for-small hide-for-medium">
+
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+          <script src="{% static "assets/js/responsiveslides.min.js" %}"></script>
+            
+            <ul class="rslides">
+              <li><img src="{% static "assets/images/robots.png" %}" alt=""></li>
+              <li><img src="{% static "assets/images/learning.png" %}" alt=""></li>
+            </ul>
+ 
+          </div>
+
+        <script>
+          $(function() {
+            $(".rslides").responsiveSlides();
+          });
+        </script>
+ 
+ 
+          <div class="large-6 columns">
+ 
+            <div class="panel">
+              <h4>Welcome<hr/></h4>
+            <h5 class="subheader">This is the online home of Robozoo, a project run in the UK for creating robots that learn. On this website you will find more information about the robots and the people behind them. <br><br> Research is done with a greater goal in mind.
+            <br> 
+            <br> 
+            <br> 
+            <br> 
+            <br> 
+            <br> 
+            <br> 
+            <br> 
+            <br> 
+            <br> 
+            </h5>
+            </div>
+ 
+          </div>
+
+        </div>
+
+      <!-- End Header Content -->
+ 
+
+      <!-- Thumbnails -->
+ 
+        <div class="row">
+ 
+          <div class="large-12 show-for-small columns">
+          <h3>Latest Robots</h3><hr>
+        </div>
+ 			
+ 		  {% for robot in robots|slice:":2" %}	
+
+          <div class="large-3 small-6 columns">
+            <img src="/static/assets/{{ robot.Thumb|thumbnail_url:'robot' }}" alt="" />
+            <div class="panel">
+              <a href="/robots/get/{{ robot.id }}/">{{ robot.Name }}</a>
+            </div>
+          </div>
+          {% endfor %}
+
+       <div class="large-3 columns">  
+          <div class="panel">
+          <h5>People</h5><hr/>
+          {% for article in articles|slice:":1" %}
+          <p class="subheader">The magic behind all of the work you see being done. Learn more about their insightful research and publications.</p><br>
+          <a href="/blog/get/{{ article.id }}/" class="button small alert">Read More</a>
+          {% endfor %}
+          </div>
+      </div>  
+
+ 		  <div class="large-3 columns">	
+	        <div class="panel">
+	        <h5>Latest Blog</h5><hr/>
+          {% for article in articles|slice:":1" %}
+	        <h6>{{ article.Title }}</h6>
+	        <p>{{ article.Text|truncatechars:"53"|safe }}</p>
+	        <a href="/blog/get/{{ article.id }}/" class="button small alert">Read More</a>
+          {% endfor %}
+	        </div>
+      </div>	
+    </div>
+ 
+      <!-- End Thumbnails -->
+ 
+ 
+      <!-- Footer -->
+ 
+        <footer class="row">
+        <div class="large-12 columns"><hr />
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>Copyright © 2014 Robozoo.</p>
+              </div>
+
+              <div class="large-6 columns">
+                  <ul class="inline-list right">
+                    <li><a href="/login">Staff Area</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+      <!-- End Footer -->
+ 
+ 
+    </div>
+  </div>
+
+</body>
+{% endblock %}
+
+</html>

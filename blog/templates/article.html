@@ -1,0 +1,108 @@
+{% extends "blog.html" %}
+{% load static %}
+
+<title>{% block title %}Robozoo | {{ article.Title }}{% endblock %}</title>
+
+{% block body %}
+
+ <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+         <li><a href="/" class="button alert">Home</a></li>
+         <li><a href="/robots/" class="button alert">Robots</a></li>
+         <li><a href="/people/" class="button alert">People</a></li>
+         <li><a href="/blog/" class="button alert">Blog</a></li>
+        </ul>
+      </div>
+      <br>
+      <h1><img src="{% static "assets/images/robozoo-logo.png" %}" /></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+ 
+ 
+  <!-- Main Page Content and Sidebar -->
+ 
+  <div class="row">
+ 
+    <!-- Main Blog Content -->
+    <div class="large-9 columns" role="content">
+
+      <article>
+ 
+        <h3><a href="/blog/get/{{ article.id }}/">{{ article.Title }}</a></h3>
+        <h6>Written by {{ article.Author }} on {{ article.Date|date:"j F Y" }}</h6>
+
+        {% if user.is_authenticated %}
+            <a href="/blog/edit/{{ article.id }}/" class="button small">Edit Article</a>
+        {% endif %}
+ 
+         {% if article.Image %}
+          </br>
+          <p><img src="/static/assets/{{article.Image}}" width="350px"/></p>
+        {% endif %}
+
+        <div class="row">
+          <div class="large-12 columns">
+            {{ article.Text|safe }}
+          </div>
+        </div>
+ 
+      </article>
+
+    </div>
+ 
+    <!-- End Main Content -->
+ 
+ 
+    <!-- Sidebar -->
+ 
+    <aside class="large-3 columns">
+ 
+      <div class="panel">
+        <h5>Robots</h5>
+        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon.</p>
+        <a href="#" class="small button">Read More</a>
+      </div>
+ 
+      <div class="panel">
+        <h5>People</h5>
+        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon.</p>
+        <a href="#" class="small button">Read More</a>
+      </div>
+ 
+    </aside>
+ 
+    <!-- End Sidebar -->
+  </div>
+ 
+  <!-- End Main Content and Sidebar -->
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Copyright © 2014 Robozoo.</p>
+        </div>
+
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+               <li><a href="/login">Staff Login</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+     
+{% endblock %}
+

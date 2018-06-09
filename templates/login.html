@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Robozoo | Login{% endblock %}</title>
+
+{% block header %}
+<h3>Login <small>Enter details</small></h3>
+{% endblock %}
+
+{% block content %}
+
+  <form action="/auth/" method="post">{% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username" value="" id="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password" value="" id="password">
+
+    <input type="submit" value="Submit" class="button small" />
+    
+  </form>
+
+{% endblock %}

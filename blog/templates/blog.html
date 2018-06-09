@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Robozoo | Blog{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/foundation.css" %}">
+</head>
+
+{% block body %}
+<body>
+
+ <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+         <li><a href="/" class="button alert">Home</a></li>
+         <li><a href="/robots/" class="button alert">Robots</a></li>
+         <li><a href="/people/" class="button alert">People</a></li>
+         <li><a href="/blog/" class="button alert">Blog</a></li>
+        </ul>
+      </div>
+      <br>
+      <h1><img src="{% static "assets/images/robozoo-logo.png" %}" /></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+ 
+ 
+  <!-- Main Page Content and Sidebar -->
+ 
+  <div class="row">
+ 
+    <!-- Main Blog Content -->
+    <div class="large-9 columns" role="content">
+
+      {% for article in articles %}
+
+      <article>
+ 
+        <h3><a href="/blog/get/{{ article.id }}/">{{ article.Title }}</a></h3>
+        <h6>Written by {{ article.Author }} on {{ article.Date|date:"j F Y" }}</h6>
+ 
+        <div class="row">
+          <div class="large-12 columns">
+            {{ article.Text|truncatewords:"160"|safe }}
+            <br>
+            <br>
+            <a href="/blog/get/{{ article.id }}/" class="button small">Read More</a>
+          </div>
+        </div>
+ 
+      </article>
+       <hr />
+
+      {% endfor %}
+
+      <span class="step-links">
+        {% if articles.has_previous %}
+            <a href="?page={{ articles.previous_page_number }}">Previous</a> |
+        {% endif %}
+
+        <span class="current">
+            Page {{ articles.number }} of {{ articles.paginator.num_pages }}
+        </span>
+
+        {% if articles.has_next %}
+           | <a href="?page={{ articles.next_page_number }}">Next</a>
+        {% endif %}
+    </span>
+ 
+    </div>
+ 
+    <!-- End Main Content -->
+ 
+    <!-- Sidebar -->
+ 
+    <aside class="large-3 columns">
+ 
+      <div class="panel">
+        <h5>Robots</h5>
+        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon.</p>
+        <a href="#" class="small button">Read More</a>
+      </div>
+ 
+      <div class="panel">
+        <h5>People</h5>
+        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon.</p>
+        <a href="#" class="small button">Read More</a>
+      </div>
+ 
+    </aside>
+ 
+    <!-- End Sidebar -->
+  </div>
+ 
+  <!-- End Main Content and Sidebar -->
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Copyright © 2014 Robozoo.</p>
+        </div>
+
+        <div class="large-6 columns">
+            <ul class="inline-list right">
+                 <li><a href="/login">Staff Area</a></li>
+            </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+     
+{% endblock %}
+</body>
+</html>

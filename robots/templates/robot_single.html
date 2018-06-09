@@ -1,0 +1,96 @@
+{% extends "robots.html" %}
+{% load static %}
+
+<title>{% block title %}Robozoo | {{ robot.Name }}{% endblock %}</title>
+
+{% block body %}
+
+ <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+         <li><a href="/" class="button alert">Home</a></li>
+         <li><a href="/robots/" class="button alert">Robots</a></li>
+         <li><a href="/people/" class="button alert">People</a></li>
+         <li><a href="/blog/" class="button alert">Blog</a></li>
+        </ul>
+      </div>
+      <br>
+      <h1><img src="{% static "assets/images/logo.jpeg" %}" /></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+
+  <!-- Main Page Content -->
+ 
+  <div class="row">
+ 
+    <div class="large-3 panel columns">
+      <img src="/static/assets/{{ robot.Image }}" width="250px">
+      <br>
+      <br>
+      <h4>{{ robot.Name }}</h4>
+      {% if user.is_authenticated %}
+          <a href="/robots/edit/{{ robot.id }}/" class="button small">Edit Robot</a>
+      {% endif %}
+      <hr>
+      <p>{{ robot.TinyMCE|truncatewords:"20"|safe }}</p>
+    </div>
+ 
+    <div class="large-9 columns">
+      <div class="panel">
+        <div class="row">
+        <p>{{ robot.TinyMCE|safe }}</p>
+        </div>
+      </div>
+ 
+      <div class="row">
+        <div class="large-6 columns">
+          <div class="panel">
+            <h5>Kit Instructions</h5>
+            <p>Sed sit amet posuere erat. Quisque in ipsum non augue euismod dapibus non et eros.</p>
+            <a href="/static/assets/{{ robot.Kit }}" class="small button">Download</a>
+          </div>
+        </div>
+ 
+        <div class="large-6 columns">
+          <div class="panel">
+            <h5>Software Instructions</h5>
+            <p>Sed sit amet posuere erat. Quisque in ipsum non augue euismod dapibus non et eros.</p>
+            <a href="/static/assets/{{ robot.Software }}" class="small button">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <!-- End Main Content -->
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Copyright © 2014 Robozoo.</p>
+        </div>
+
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+               <li><a href="/login">Staff Login</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+     
+{% endblock %}
+

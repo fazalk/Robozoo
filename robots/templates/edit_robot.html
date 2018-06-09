@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Robozoo | Edit Robot{% endblock %}</title>
+
+{% block header %}
+
+<h3>Edit Robot <small>Your content</small></h3>
+
+{% endblock %}
+
+{% block sidebar %}  
+      <ul class="side-nav">
+       <li><a href="/robots/all">Robots</a></li>
+       <li><a href="/robots/create">Create Robot</a></li>
+       <li><a href="/user">User Area</a></li>
+       <li><a href="/logout">Logout</a></li>
+      </ul>
+{% endblock %}
+
+{% block content %}
+
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/redmond/jquery-ui.css" rel="Stylesheet" />
+
+<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> 
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script> 
+
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+
+<script>
+        tinymce.init({selector:'textarea',height:200,width:550});
+</script>
+
+<form action="/robots/edit/{{ robot.id }}/" method="post" enctype="multipart/form-data">{% csrf_token %}
+<p>
+{{ form }}  
+</p>
+
+<input type="submit" name="submit" value="Publish" class="button small">
+</form>
+
+<script type="text/javascript"> 
+  $(function(){
+    $("#id_Date").datepicker(
+    	{
+     		dateFormat: "d MM yy",
+    	}
+    );
+  });
+</script>
+
+{% endblock %}

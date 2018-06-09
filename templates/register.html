@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Robozoo | Register{% endblock %}</title>
+
+{% block header %}
+<h3>Register <small>Your details</small></h3>
+{% endblock %}
+  
+
+{% block content %}
+
+  {% for field in form %}
+    {{field.error}}
+  {% endfor %}
+  
+  <form action="/register/" method="post">{% csrf_token %}
+
+  {{form}}
+  
+  </br>
+  <input type="submit" value="Register" class="button small"/>
+    
+  </form>
+  
+{% endblock %}

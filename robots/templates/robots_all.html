@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Robozoo | Robots (All){% endblock %}</title>
+
+{% block header %}
+<h3>Robots <small>Published online</small></h3>
+{% endblock %}
+
+{% block sidebar %}  
+      <ul class="side-nav">
+       <li><a href="/robots/all">Robots</a></li>
+       <li><a href="/robots/create">Create Robot</a></li>
+       <li><a href="/user">User Area</a></li>
+       <li><a href="/logout">Logout</a></li>   
+      </ul>
+{% endblock %}
+
+{% block content %}
+
+{% if robots.count > 0 %}
+
+{% for robot in robots %}
+
+<h3><a href="/robots/get/{{ robot.id }}/">{{ robot.Name }}</a></h3>
+<p>{{ robot.TinyMCE|truncatewords:"10"|safe }}</p>
+
+{% endfor %}
+
+{% else %}
+
+<p>There are no robots published online on this website.
+</br> Click <a href="/robots/create/">here</a> to create a robot and publish it.</p>
+
+{% endif %}
+
+{% endblock %}
